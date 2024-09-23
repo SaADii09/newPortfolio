@@ -21,44 +21,7 @@ mobileNavItems.forEach((item) => {
 	});
 });
 
-document.getElementById("theme-toggle").addEventListener("change", function () {
-	if (this.checked) {
-		document.body.style.setProperty("--background-odd", "#0f0f0f");
-		document.body.style.setProperty("--Light-txt", "#f0f0f0");
-		document.body.style.setProperty("--slate-background", "#8e8e8e");
-		document.body.style.setProperty("--text", "#f9f9f9");
-		document.body.style.setProperty("--hover", " #147efb");
-		document.body.style.setProperty("--colori", " #fff");
-		document.body.style.setProperty("--background-even", "#090909");
-		document.body.style.setProperty("--shadow", "#ffffff1a");
-	} else {
-		document.body.style.setProperty("--background-odd", "#fff");
-		document.body.style.setProperty("--Light-txt", "#767676");
-		document.body.style.setProperty("--slate-background", "#8e8e8e");
-		document.body.style.setProperty("--text", "#2d2e32");
-		document.body.style.setProperty("--hover", "#147efb");
-		document.body.style.setProperty("--colori", "#000");
-		document.body.style.setProperty("--background-even", "#f9f9f9");
-		document.body.style.setProperty("--shadow", "#0000001a");
-	}
-});
-
-// document
-// 	.getElementById("contact-form-button")
-// 	.addEventListener("click", function () {
-// 		document.querySelectorAll("input").setvalues="";
-// 	});
-
-// document
-// 	.getElementById("contact-form-button")
-// 	.addEventListener("click", function () {
-// 		setTimeout(function () {
-// 			document.getElementsByClassName("form-input").forEach(function (input) {
-// 				input.value = "";
-// 			});
-// 		}, 100);
-// 	});
-
+/////////////////// form submit///////////////////
 document
 	.getElementById("contact-form-button")
 	.addEventListener("click", function (event) {
@@ -74,3 +37,38 @@ document
 
 		}, 100);
 	});
+
+/////////////////////////////////////////////////
+
+/////////////////////////////////theme - switch ////////////////////////
+let darkmode = localStorage.getItem("darkmode");
+const themeSwitch = document.querySelector("#theme-switch");
+
+// Apply the initial theme based on localStorage
+
+
+const enableDarkMode = () => {
+    // console.log("enabled");
+    document.body.classList.add("darkmode");
+    localStorage.setItem("darkmode", "active");
+};
+
+const disableDarkMode = () => {
+    // console.log("disabled");
+    document.body.classList.remove("darkmode");
+    localStorage.setItem("darkmode", null);
+};
+
+if (darkmode === "active") {
+    enableDarkMode();
+}
+
+// Toggle dark mode on button click
+themeSwitch.addEventListener("click", () => {
+    darkmode = localStorage.getItem("darkmode");
+    if (darkmode !== "active") {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+});
